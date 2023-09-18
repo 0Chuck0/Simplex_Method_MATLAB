@@ -1,0 +1,17 @@
+Update the Find_MRV function
+It does not handle the case where the MRV becomes negative
+To counter it just set the MRV value of that very high like INT_MAX or something
+Here is the updated MRV function
+
+function output =  find_mrv(Table_1,b,idx)
+    %taking i+1 as the first row is cost row(Zj - Cj)
+    mrv = zeros([1 size(b,1)]);
+    for i=1:size(b,1)
+        mrv(i) = Table_1(i+1,6)/Table_1(i+1,idx);
+        if (mrv(i) < 0 )
+            mrv(i) = 999999;
+        end
+    end
+
+    output = transpose(mrv);
+end
